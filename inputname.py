@@ -72,14 +72,14 @@ def get_bot_response(user_input):
 def chat_bot():
     """Main chatbot function."""
     print("=" * 50)
-    print("🤖 WELCOME TO AI CHATBOT 🤖")
+    print("🤖 WELCOME BOSS 🤖")
     print("=" * 50)
     print()
     
     # Get user's name
     name = input("What is your name? ").strip()
     if not name:
-        name = "Friend"
+        name = "Nigga"  # Default name if user doesn't provide one
     
     # Personalized greeting
     print()
