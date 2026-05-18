@@ -3,8 +3,15 @@
     {
       "name": "Default",
       "files": [
-        "README.md",
-        ".vscode/changelists.json"
+        "TODO.md",
+        ".vscode/changelists.json",
+        "inputname.py",
+        "script.js",
+        "index.html",
+        "__pycache__/inputname.cpython-313.pyc",
+        "styles.css",
+        "assets_dummy.txt",
+        "assets_dummy2.txt"
       ]
     }
   ],
