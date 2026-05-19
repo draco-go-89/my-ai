@@ -40,18 +40,34 @@ function getBotResponse(input) {
 
   // Joke / funny
   if ([
-    'joke'
+    'joke', 'funny', 'lol', 'lmao', 'roast', 'meme', 'cringe', 'lolf',
+    'yeet', 'hehe', 'fun', 'laugh'
   ].some(w => user_input.includes(w))) {
-    // Simple smart reply (no jokes, no emoji)
-    return rand([
-      "Tell me what you mean.",
-      "What do you want to ask next?",
-      "Give me one detail and I will respond.",
-      "Do you want advice or just confirmation?",
-      "Reply with your question.",
-      "What is the goal of this message?"
-    ]);
+    const jokes = [
+      "Why did the computer get cold? …Because it left its Windows open! 😂",
+      "I tried to catch fog yesterday. Mist.akes were made. 😭",
+      "Why don’t skeletons fight each other? They don’t have the guts. 💀",
+      "I’m reading a book on anti-gravity. It’s impossible to put down. 📚✨",
+      "Why did the math book look sad? Because it had too many problems. 😅",
+      "Why did the scarecrow win an award? Because he was outstanding in his field. 🌾",
+      "I would tell you a UDP joke… but you might not get it. 😄",
+      "Bruh I told a joke to my keyboard… now it keeps autocorrecting my punchlines 🤣",
+      "Want a joke? Here’s one: you’re doing awesome. (See? Easy.) 😌",
+      "If laughter was money, you’d be the richest person in the group. 😂",
+      "What do you call fake spaghetti? An impasta. 🍝",
+      "Why did the bicycle fall over? Because it was two-tired. 🚲",
+      "What’s a pirate’s favorite letter? You think it’s the R… but it’s the C. 🏴‍☠️",
+      "Why did the donut go to therapy? Because it was feeling a little *hole-y*. 🍩",
+      "I’m on a seafood diet. I see food and I eat it. 🦐",
+      "My phone said I need a break… so I turned on airplane mode. ✈️",
+      "I tried to write a joke about Wi‑Fi… but I couldn’t find a strong connection. 📶",
+      "What do you call a bear with no teeth? A gummy bear. 🧸",
+      "I told my computer a joke… it didn’t laugh. It just restarted. 😄",
+      "Zero worries. I’m here. And yes—this is your sign to smile. ✨"
+    ];
+    return rand(jokes);
   }
+
 
   // What can you do / help
   if ([

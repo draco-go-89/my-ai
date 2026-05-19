@@ -40,17 +40,34 @@ def get_bot_response(user_input: str) -> str:
         return random.choice(responses)
 
     # Joke / funny
-    elif 'joke' in user_input:
-        # Simple smart reply (no jokes, no emoji)
-        replies = [
-            "Please ask your question.",
-            "What would you like help with?",
-            "Tell me what you are trying to do.",
-            "What is the exact problem?",
-            "Please provide one detail so I can respond.",
-            "What do you want to achieve?"
+    elif any(word in user_input for word in [
+        'joke', 'funny', 'lol', 'lmao', 'roast', 'meme', 'cringe', 'lolf',
+        'yeet', 'hehe', 'fun', 'laugh'
+    ]):
+        jokes = [
+            "Why did the computer get cold? …Because it left its Windows open! 😂",
+            "I tried to catch fog yesterday. Mist.akes were made. 😭",
+            "Why don’t skeletons fight each other? They don’t have the guts. 💀",
+            "I’m reading a book on anti-gravity. It’s impossible to put down. 📚✨",
+            "Why did the math book look sad? Because it had too many problems. 😅",
+            "Why did the scarecrow win an award? Because he was outstanding in his field. 🌾",
+            "I would tell you a UDP joke… but you might not get it. 😄",
+            "Bruh I told a joke to my keyboard… now it keeps autocorrecting my punchlines 🤣",
+            "Want a joke? Here’s one: you’re doing awesome. (See? Easy.) 😌",
+            "If laughter was money, you’d be the richest person in the group. 😂",
+            "What do you call fake spaghetti? An impasta. 🍝",
+            "Why did the bicycle fall over? Because it was two-tired. 🚲",
+            "What’s a pirate’s favorite letter? You think it’s the R… but it’s the C. 🏴‍☠️",
+            "Why did the donut go to therapy? Because it was feeling a little *hole-y*. 🍩",
+            "I’m on a seafood diet. I see food and I eat it. 🦐",
+            "My phone said I need a break… so I turned on airplane mode. ✈️",
+            "I tried to write a joke about Wi‑Fi… but I couldn’t find a strong connection. 📶",
+            "What do you call a bear with no teeth? A gummy bear. 🧸",
+            "I told my computer a joke… it didn’t laugh. It just restarted. 😄",
+            "Zero worries. I’m here. And yes—this is your sign to smile. ✨"
         ]
-        return random.choice(replies)
+        return random.choice(jokes)
+
 
     # What can you do / help
     elif any(phrase in user_input for phrase in [
@@ -73,8 +90,8 @@ def get_bot_response(user_input: str) -> str:
             "I’m your AI assistant—here to chat and help.",
             "I’m the friendly chatbot living in your browser. No big drama, just vibes.",
             "I’m here to answer questions, tell jokes, and keep the convo moving.",
-            "I’m a simple demo bot—smart-ish, funny-ish. You’ll survive. 😄",
-            "I’m like a helpful friend… but with Wi‑Fi. ✨"
+            "I’m a simple demo bot. You’ll get responses.",
+            "I’m like a helpful friend."
         ])
 
     # Thanks / appreciation
@@ -82,14 +99,14 @@ def get_bot_response(user_input: str) -> str:
         'thank', 'thanks', 'thx', 'appreciate', 'ty', 'tysm', 'grateful', 'much'
     ]):
         responses = [
-            "You’re welcome! 😊",
+            "You’re welcome.",
             "No problem at all!",
-            "Happy to help! What’s next? 😄",
-            "Anytime! I got you, fam 🤝",
-            "My pleasure! Let’s keep going.",
-            "W—thanks for saying that! ❤️",
-            "Glad I could help. You’re awesome too! ✨",
-            "Thank you back! You’re the best fr. 😄"
+            "Happy to help. What’s next?",
+            "Anytime.",
+            "My pleasure. Let’s keep going.",
+            "Thanks for saying that.",
+            "Glad I could help.",
+            "Thank you. You’re welcome."
         ]
         return random.choice(responses)
 
@@ -98,11 +115,11 @@ def get_bot_response(user_input: str) -> str:
         'bye', 'goodbye', 'see you', 'later', 'cya', 'ttyl', 'exit', 'quit'
     ]):
         responses = [
-            "Bye! It was nice chatting with you 👋",
-            "Take care! Come back soon 😄",
-            "See you later, fam! ✌️",
-            "Alright alright—later! Keep it easy 😌",
-            "Peace out! Don’t be a stranger. 🤝"
+            "Bye. It was nice chatting with you.",
+            "Take care. Come back soon.",
+            "See you later.",
+            "Alright. Later.",
+            "Peace out. Take care."
         ]
         return random.choice(responses)
 
@@ -111,10 +128,10 @@ def get_bot_response(user_input: str) -> str:
         'help', 'assist', 'support', 'can you help', 'help me', 'i need help', 'please help'
     ]):
         return random.choice([
-            "Sure thing 😄 Ask me anything—questions, ideas, or just jokes.",
+            "Sure. Ask me anything—questions, ideas, or what you need.",
             "I can help with simple answers and friendly chat. What do you need?",
-            "Tell me your question and I’ll do my best. 🤝",
-            "I’m on it. Drop the problem, fam. 👀"
+            "Tell me your question and I will do my best.",
+            "I’m ready. What is the problem?"
         ])
 
     # Slang triggers (friendly)
@@ -122,39 +139,39 @@ def get_bot_response(user_input: str) -> str:
         'bruh', 'fam', 'fr', 'ong', 'ngl', 'frfr', 'idk', 'w', 'l', 'yeet', 'rip', 'no cap', 'cap'
     ]):
         return random.choice([
-            "Real talk 😄 Tell me more.",
-            "Ngl, that’s kinda interesting 👀",
-            "W response. What’s the next move?",
-            "Frfr—okay okay, I’m listening 👂",
-            "Yeet! Lemme help you with that 😂",
-            "Bruh, say less. What do you want to ask? 😄",
-            "No cap—this convo is actually going somewhere. 🚀"
+            "Tell me more.",
+            "That sounds interesting.",
+            "What is the next step?",
+            "I’m listening.",
+            "How can I help?",
+            "What do you want to ask?",
+            "Let’s continue."
         ])
 
     # Small talk (easy/common words)
     elif any(word in user_input for word in ['weather', 'rain', 'sun', 'hot', 'cold']):
         return random.choice([
-            "Weather check: rain outside? cozy inside vibes ☔️",
-            "Honestly… weather is always doing the most 😭",
-            "Sun’s cute, but I’m still here for the chat 😄"
+            "Weather check: is it raining where you are?",
+            "Weather can be unpredictable.",
+            "Sun or rain, I’m here to chat."
         ])
     elif any(word in user_input for word in ['food', 'hungry', 'eat', 'snack', 'pizza', 'burger']):
         return random.choice([
-            "Food talk? Respect. What are you craving? 🍕",
-            "If you’re hungry, I’m hungry for that info too 😂",
-            "Snack check: what’s your go-to?"
+            "What are you craving?",
+            "If you’re hungry, tell me what you want to eat.",
+            "What is your go-to snack?"
         ])
     elif any(word in user_input for word in ['sleep', 'tired', 'nap', 'wake up']):
         return random.choice([
-            "Sleep is valid. Do a quick nap, then come back 😌",
-            "Tired? Same. But we ballin’—one message at a time 😂",
-            "Go rest if you can. I’ll still be here when you wake. ✨"
+            "If you’re tired, take a short break.",
+            "Rest if you can.",
+            "Come back when you’re ready."
         ])
     elif any(word in user_input for word in ['music', 'song', 'spotify', 'listen']):
         return random.choice([
-            "Music time? Drop the vibe—chill or hype? 🎧",
-            "I don’t pick songs… you do. But I judge your playlist lovingly 😄",
-            "What’s the last song you couldn’t stop listening to?"
+            "Music time. What are you listening to?",
+            "What’s the last song you listened to?",
+            "Do you prefer calm or upbeat music?"
         ])
 
     # Default (more varied short easy responses)
@@ -165,17 +182,17 @@ def get_bot_response(user_input: str) -> str:
             "Alright then. ", "Real quick: ", "So basically: "
         ]
         endings = [
-            "What do you mean? 😄",
+            "What do you mean?",
             "What happened next?",
-            "Do you want advice or just vibes?",
-            "Give me a bit more detail, fam.",
-            "Keep going—I'm listening 👀",
-            "Say more. I’m here.",
+            "Do you want advice or confirmation?",
+            "Give me a bit more detail.",
+            "Keep going.",
+            "Say more.",
             "Any examples?",
             "What’s your goal?",
             "How do you feel about it?",
-            "Do you want a joke too? 😄",
-            "Wanna keep it simple, or go deeper?"
+            "Do you want a simple response?",
+            "Do you want a short answer or details?"
         ]
         return f"{random.choice(starters)}{random.choice(endings)}"
 
@@ -183,7 +200,7 @@ def get_bot_response(user_input: str) -> str:
 def chat_bot():
     """Main chatbot function."""
     print("=" * 50)
-    print("🤖 WELCOME BOSS 🤖")
+    print("WELCOME")
     print("=" * 50)
     print()
 
@@ -194,7 +211,7 @@ def chat_bot():
 
     # Personalized greeting
     print()
-    print(f"Hello, {name}! I'm your AI assistant! 👋")
+    print(f"Hello, {name}! I am your AI assistant.")
     print("Nice to meet you! I'm here to chat and answer your questions.")
     print("Type 'bye' or 'goodbye' when you want to end the conversation.")
     print("-" * 50)
@@ -206,13 +223,13 @@ def chat_bot():
             user_input = input(f"{name}: ").strip()
 
             if not user_input:
-                print("Bot: Please say something bro! 🤔")
+                print("Bot: Please say something.")
                 continue
 
             # Check for exit
             if any(word in user_input.lower() for word in ['bye', 'goodbye', 'see you', 'later', 'exit', 'quit']):
                 print()
-                print("Bot: Goodbye! It was wonderful chatting with you! Take care bro! 👋")
+                print("Bot: Goodbye! Take care.")
                 break
 
             # Get and display bot response
@@ -222,7 +239,7 @@ def chat_bot():
 
         except KeyboardInterrupt:
             print()
-            print("Bot: Goodbye! Chat terminated. Take care! 👋")
+            print("Bot: Goodbye! Chat terminated. Take care.")
             break
 
 
