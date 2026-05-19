@@ -1,6 +1,3 @@
-# AI Chatbot — Static Web Demo
+## Website llink
 
-This repository contains a small Python chatbot demo and a static HTML/CSS/JS port.
-
-To run locally, open `[index.html]` in your browser (no server required).
-
+[AI CHATBOT](https://draco-go-89.github.io/my-ai/)

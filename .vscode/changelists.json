@@ -3,10 +3,8 @@
     {
       "name": "Default",
       "files": [
-        "inputname.py",
-        ".vscode/changelists.json",
-        "__pycache__/inputname.cpython-313.pyc",
-        "script.js"
+        "README.md",
+        ".vscode/changelists.json"
       ]
     }
   ],
