@@ -40,20 +40,16 @@ function getBotResponse(input) {
 
   // Joke / funny
   if ([
-    'joke', 'funny', 'lol', 'lmao', 'roast', 'meme', 'cringe', 'lolf',
-    'yeet', 'hehe', 'fun', 'laugh'
+    'joke'
   ].some(w => user_input.includes(w))) {
+    // Simple smart reply (no jokes, no emoji)
     return rand([
-      "Why did the computer get cold? …Because it left its Windows open! 😂",
-      "I tried to catch fog yesterday. Mist.akes were made. 😭",
-      "Why don’t skeletons fight each other? They don’t have the guts. 💀",
-      "I’m reading a book on anti-gravity. It’s impossible to put down. 📚✨",
-      "Why did the math book look sad? Because it had too many problems. 😅",
-      "Why did the scarecrow win an award? Because he was outstanding in his field. 🌾",
-      "I would tell you a UDP joke… but you might not get it. 😄",
-      "Bruh I told a joke to my keyboard… now it keeps autocorrecting my punchlines 🤣",
-      "Want a joke? Here’s one: you’re doing awesome. (See? Easy.) 😌",
-      "If laughter was money, you’d be the richest person in the group. 😂"
+      "Tell me what you mean.",
+      "What do you want to ask next?",
+      "Give me one detail and I will respond.",
+      "Do you want advice or just confirmation?",
+      "Reply with your question.",
+      "What is the goal of this message?"
     ]);
   }
 

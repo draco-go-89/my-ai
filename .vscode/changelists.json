@@ -3,15 +3,10 @@
     {
       "name": "Default",
       "files": [
-        "TODO.md",
+        "script.js",
         ".vscode/changelists.json",
         "inputname.py",
-        "script.js",
-        "index.html",
-        "__pycache__/inputname.cpython-313.pyc",
-        "styles.css",
-        "assets_dummy.txt",
-        "assets_dummy2.txt"
+        "__pycache__/inputname.cpython-313.pyc"
       ]
     }
   ],

@@ -11,17 +11,16 @@ def get_bot_response(user_input: str) -> str:
         'what up', 'whatup', 'fam', 'bruh', 'dude', 'mate'
     ]):
         responses = [
-            "Yo yo! What’s up? 😄",
-            "Sup fam! What’s the move today? 👀",
-            "Hey! How’s your day going?",
-            "Hi there! Need help with anything?",
-            "Hello! Come talk to me—easy vibes only 😌",
-            "Hey hey! Tell me what’s on your mind 👀",
-            "Yo! I’m here. Shoot your question!",
-            "Hello! I’m your friendly chatbot—let’s go 🚀",
-            "What up, dude? Talk to me! 🤝",
-            "Howdy! You here for jokes or questions? 😄",
-            "Yo! I missed this convo (kinda). What’s up? 😂"
+            "Hello. How can I help?",
+            "Hi. What would you like to do today?",
+            "Good to see you. What is your question?",
+            "Hello. Please tell me what you need.",
+            "Hi. How can I assist you?",
+            "Welcome. What would you like to discuss?",
+            "Hello. What is on your mind?",
+            "Hi. Please share your question.",
+            "Good day. How can I help?",
+            "Hello. What do you need help with?"
         ]
         return random.choice(responses)
 
@@ -31,33 +30,27 @@ def get_bot_response(user_input: str) -> str:
         "u good", "you good", "you alright", "how you doing"
     ]):
         responses = [
-            "I’m doing great—thanks for asking! 😊",
-            "I’m chillin’ 😌 Ready to help you.",
-            "All good! You bringing good vibes or chaos today? 😄",
-            "Fantastic! Quick question: what are we doing today?",
-            "Doing well! Let’s make it a W day. 💪",
-            "Ngl I’m vibing. What about you? 👀"
+            "I’m doing well. How can I help?",
+            "I’m doing fine. What would you like to ask?",
+            "I’m okay. Please tell me your question.",
+            "I’m ready to help. What do you need?",
+            "I’m doing good. How may I assist you?",
+            "I’m fine. What are we working on?"
         ]
         return random.choice(responses)
 
     # Joke / funny
-    elif any(word in user_input for word in [
-        'joke', 'funny', 'lol', 'lmao', 'roast', 'meme', 'cringe', 'lolf',
-        'yeet', 'hehe', 'fun', 'laugh'
-    ]):
-        jokes = [
-            "Why did the computer get cold? …Because it left its Windows open! 😂",
-            "I tried to catch fog yesterday. Mist.akes were made. 😭",
-            "Why don’t skeletons fight each other? They don’t have the guts. 💀",
-            "I’m reading a book on anti-gravity. It’s impossible to put down. 📚✨",
-            "Why did the math book look sad? Because it had too many problems. 😅",
-            "Why did the scarecrow win an award? Because he was outstanding in his field. 🌾",
-            "I would tell you a UDP joke… but you might not get it. 😄",
-            "Bruh I told a joke to my keyboard… now it keeps autocorrecting my punchlines 🤣",
-            "Want a joke? Here’s one: you’re doing awesome. (See? Easy.) 😌",
-            "If laughter was money, you’d be the richest person in the group. 😂"
+    elif 'joke' in user_input:
+        # Simple smart reply (no jokes, no emoji)
+        replies = [
+            "Please ask your question.",
+            "What would you like help with?",
+            "Tell me what you are trying to do.",
+            "What is the exact problem?",
+            "Please provide one detail so I can respond.",
+            "What do you want to achieve?"
         ]
-        return random.choice(jokes)
+        return random.choice(replies)
 
     # What can you do / help
     elif any(phrase in user_input for phrase in [
@@ -65,11 +58,11 @@ def get_bot_response(user_input: str) -> str:
         'commands', 'how do i', 'what can i ask'
     ]):
         return random.choice([
-            "I can chat, answer simple questions, and help you brainstorm. 😄",
-            "I’m basically your friendly sidekick—ask me anything!",
-            "Tell me what you need and I’ll try to help, fam. 🤝",
-            "I can do quick answers, jokes, and simple suggestions. What do you want?",
-            "I’m a vibe + info machine. What’s the mission? 🚀"
+            "I can chat, answer simple questions, and help you brainstorm.",
+            "I’m basically your friendly sidekick. Ask me anything.",
+            "Tell me what you need and I’ll try to help.",
+            "I can do quick answers and simple suggestions. What do you want?",
+            "I’m here to help. What’s the mission?"
         ])
 
     # About the bot
@@ -77,9 +70,9 @@ def get_bot_response(user_input: str) -> str:
         'who are you', 'what are you', 'your name', 'about you', 'who r u', 'bot'
     ]):
         return random.choice([
-            "I’m your AI assistant—here to chat and help. 😄",
+            "I’m your AI assistant—here to chat and help.",
             "I’m the friendly chatbot living in your browser. No big drama, just vibes.",
-            "I’m here to answer questions, tell jokes, and keep the convo moving. 🚀",
+            "I’m here to answer questions, tell jokes, and keep the convo moving.",
             "I’m a simple demo bot—smart-ish, funny-ish. You’ll survive. 😄",
             "I’m like a helpful friend… but with Wi‑Fi. ✨"
         ])
