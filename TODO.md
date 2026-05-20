@@ -6,7 +6,8 @@
 
 - [x] Add message bubble “tail” styling for user/bot.
 
-- [ ] Update `script.js` to support a loading UX: disable send button + show loading text while bot replies.
+- [x] Update `script.js` to support a loading UX: disable send button + show loading text while bot replies.
+
 
 - [x] Sanity check: load page, verify responsiveness and interactive behavior.
 
