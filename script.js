@@ -151,6 +151,18 @@ document.addEventListener('DOMContentLoaded', () => {
     messages.scrollTop = messages.scrollHeight;
   }
 
+  const sendBtn = document.getElementById('sendBtn');
+
+  function setLoading(isLoading) {
+    sendBtn.disabled = isLoading;
+    sendBtn.dataset.loading = String(isLoading);
+    if (isLoading) {
+      sendBtn.textContent = 'Sending…';
+    } else {
+      sendBtn.textContent = 'Send';
+    }
+  }
+
   controls.addEventListener('submit', (e) => {
     e.preventDefault();
     const name = nameInput.value.trim() || 'Friend';
@@ -160,10 +172,14 @@ document.addEventListener('DOMContentLoaded', () => {
     appendMessage(`${name}: ${text}`, 'user');
     textInput.value = '';
 
+    setLoading(true);
+
     setTimeout(() => {
       const reply = getBotResponse(text);
       appendMessage(`Bot: ${reply}`, 'bot');
-    }, 200);
+      setLoading(false);
+    }, 450);
   });
+
 });
 
