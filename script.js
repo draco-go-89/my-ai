@@ -3,207 +3,131 @@ function rand(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
 function getBotResponse(input) {
   const user_input = (input || "").toLowerCase().trim();
 
-  // Greetings / slang
-  if ([
-    'hello', 'hi', 'hey', 'greetings', 'yo', 'sup', 'heyyo', 'hiya', 'howdy',
-    'what up', 'whatup', 'fam', 'bruh', 'dude', 'mate'
-  ].some(w => user_input.includes(w))) {
+  // Basic greetings / help
+  if (["hello", "hi", "hey", "greetings", "howdy"].some(w => user_input.includes(w))) {
     return rand([
-      "Yo yo! What’s up? 😄",
-      "Sup fam! What’s the move today? 👀",
-      "Hey! How’s your day going?",
-      "Hi there! Need help with anything?",
-      "Hello! Come talk to me—easy vibes only 😌",
-      "Hey hey! Tell me what’s on your mind 👀",
-      "Yo! I’m here. Shoot your question!",
-      "Hello! I’m your friendly chatbot—let’s go 🚀",
-      "What up, dude? Talk to me! 🤝",
-      "Howdy! You here for jokes or questions? 😄",
-      "Yo! I missed this convo (kinda). What’s up? 😂"
+      "Hello! How can I help?",
+      "Hi! What can I do for you today?",
+      "Hey! What would you like to talk about?"
     ]);
   }
 
   // How are you
   if ([
     "how are you", "how do you do", "how's it going", "how is it going",
-    "u good", "you good", "you alright", "how you doing"
+    "you good", "u good", "how you doing"
   ].some(p => user_input.includes(p))) {
     return rand([
-      "I’m doing great—thanks for asking! 😊",
-      "I’m chillin’ 😌 Ready to help you.",
-      "All good! You bringing good vibes or chaos today? 😄",
-      "Fantastic! Quick question: what are we doing today?",
-      "Doing well! Let’s make it a W day. 💪",
-      "Ngl I’m vibing. What about you? 👀"
+      "I’m doing well. How can I help?",
+      "I’m fine. What do you need today?",
+      "I’m doing good. What’s on your mind?"
     ]);
   }
 
-  // Joke / funny
-  if ([
-    'joke', 'funny', 'lol', 'lmao', 'roast', 'meme', 'cringe', 'lolf',
-    'yeet', 'hehe', 'fun', 'laugh'
-  ].some(w => user_input.includes(w))) {
-    const jokes = [
-      "Why did the computer get cold? …Because it left its Windows open! 😂",
-      "I tried to catch fog yesterday. Mist.akes were made. 😭",
-      "Why don’t skeletons fight each other? They don’t have the guts. 💀",
-      "I’m reading a book on anti-gravity. It’s impossible to put down. 📚✨",
-      "Why did the math book look sad? Because it had too many problems. 😅",
-      "Why did the scarecrow win an award? Because he was outstanding in his field. 🌾",
-      "I would tell you a UDP joke… but you might not get it. 😄",
-      "Bruh I told a joke to my keyboard… now it keeps autocorrecting my punchlines 🤣",
-      "Want a joke? Here’s one: you’re doing awesome. (See? Easy.) 😌",
-      "If laughter was money, you’d be the richest person in the group. 😂",
-      "What do you call fake spaghetti? An impasta. 🍝",
-      "Why did the bicycle fall over? Because it was two-tired. 🚲",
-      "What’s a pirate’s favorite letter? You think it’s the R… but it’s the C. 🏴‍☠️",
-      "Why did the donut go to therapy? Because it was feeling a little *hole-y*. 🍩",
-      "I’m on a seafood diet. I see food and I eat it. 🦐",
-      "My phone said I need a break… so I turned on airplane mode. ✈️",
-      "I tried to write a joke about Wi‑Fi… but I couldn’t find a strong connection. 📶",
-      "What do you call a bear with no teeth? A gummy bear. 🧸",
-      "I told my computer a joke… it didn’t laugh. It just restarted. 😄",
-      "Zero worries. I’m here. And yes—this is your sign to smile. ✨"
-    ];
-    return rand(jokes);
-  }
-
-
   // What can you do / help
   if ([
-    'what can you do', 'what you do', 'what do you do',
-    'help me', 'how to', 'commands', 'how do i', 'what can i ask'
+    "what can you do", "what you do", "help me", "how to", "commands", "what can i ask"
   ].some(p => user_input.includes(p))) {
     return rand([
-      "I can chat, answer simple questions, and help you brainstorm. 😄",
-      "I’m basically your friendly sidekick—ask me anything!",
-      "Tell me what you need and I’ll try to help, fam. 🤝",
-      "I can do quick answers, jokes, and simple suggestions. What do you want?",
-      "I’m a vibe + info machine. What’s the mission? 🚀"
+      "I can answer questions and help you with ideas.",
+      "Tell me what you need and I’ll try to help.",
+      "Ask your question and I’ll respond."
     ]);
   }
 
   // About the bot
-  if ([
-    'who are you', 'what are you', 'your name', 'about you', 'who r u', 'bot'
-  ].some(w => user_input.includes(w))) {
+  if (["who are you", "what are you", "your name", "about you", "bot"].some(w => user_input.includes(w))) {
     return rand([
-      "I’m your AI assistant—here to chat and help. 😄",
-      "I’m the friendly chatbot living in your browser. No big drama, just vibes.",
-      "I’m here to answer questions, tell jokes, and keep the convo moving. 🚀",
-      "I’m a simple demo bot—smart-ish, funny-ish. You’ll survive. 😄",
-      "I’m like a helpful friend… but with Wi‑Fi. ✨"
+      "I’m a simple AI assistant for this chatbot demo.",
+      "I’m here to help you chat and find answers.",
+      "I’m a basic chatbot running in your browser."
     ]);
   }
 
-  // Thanks / appreciation
-  if ([
-    'thank', 'thanks', 'thx', 'appreciate', 'ty', 'tysm', 'grateful', 'much'
-  ].some(w => user_input.includes(w))) {
+  // Thanks
+  if (["thank", "thanks", "appreciate", "ty", "much"].some(w => user_input.includes(w))) {
     return rand([
-      "You’re welcome! 😊",
-      "No problem at all!",
-      "Happy to help! What’s next? 😄",
-      "Anytime! I got you, fam 🤝",
-      "My pleasure! Let’s keep going.",
-      "W—thanks for saying that! ❤️",
-      "Glad I could help. You’re awesome too! ✨",
-      "Thank you back! You’re the best fr. 😄"
+      "You’re welcome!",
+      "No problem.",
+      "Glad I could help."
     ]);
   }
 
   // Goodbye
-  if ([
-    'bye', 'goodbye', 'see you', 'later', 'cya', 'ttyl', 'exit', 'quit'
-  ].some(w => user_input.includes(w))) {
+  if (["bye", "goodbye", "see you", "later", "exit", "quit"].some(w => user_input.includes(w))) {
     return rand([
-      "Bye! It was nice chatting with you 👋",
-      "Take care! Come back soon 😄",
-      "See you later, fam! ✌️",
-      "Alright alright—later! Keep it easy 😌",
-      "Peace out! Don’t be a stranger. 🤝"
+      "Bye! Take care.",
+      "Goodbye! Come back soon.",
+      "See you later."
     ]);
   }
 
   // Help request
-  if ([
-    'help', 'assist', 'support', 'can you help', 'help me', 'i need help', 'please help'
-  ].some(w => user_input.includes(w))) {
+  if (["help", "assist", "support", "please help", "i need help"].some(w => user_input.includes(w))) {
     return rand([
-      "Sure thing 😄 Ask me anything—questions, ideas, or just jokes.",
-      "I can help with simple answers and friendly chat. What do you need?",
-      "Tell me your question and I’ll do my best. 🤝",
-      "I’m on it. Drop the problem, fam. 👀"
+      "What do you need help with?",
+      "Tell me your problem and I’ll help.",
+      "Ask your question and I’ll respond."
     ]);
   }
 
-  // Slang triggers (friendly)
-  if ([
-    'bruh', 'fam', 'fr', 'ong', 'ngl', 'frfr', 'idk', 'w', 'l', 'yeet', 'rip', 'no cap', 'cap'
-  ].some(w => user_input.includes(w))) {
+  // Small talk (neutral)
+  if (["weather", "rain", "sun", "hot", "cold"].some(w => user_input.includes(w))) {
     return rand([
-      "Real talk 😄 Tell me more.",
-      "Ngl, that’s kinda interesting 👀",
-      "W response. What’s the next move?",
-      "Frfr—okay okay, I’m listening 👂",
-      "Yeet! Lemme help you with that 😂",
-      "Bruh, say less. What do you want to ask? 😄",
-      "No cap—this convo is actually going somewhere. 🚀"
+      "Weather is always changing. What’s the forecast where you are?",
+      "Is it raining or sunny for you right now?"
     ]);
   }
 
-  // Small talk (easy/common words)
-  if ([ 'weather', 'rain', 'sun', 'hot', 'cold' ].some(w => user_input.includes(w))) {
+  if (["food", "hungry", "eat", "snack", "pizza", "burger"].some(w => user_input.includes(w))) {
     return rand([
-      "Weather check: rain outside? cozy inside vibes ☔️",
-      "Honestly… weather is always doing the most 😭",
-      "Sun’s cute, but I’m still here for the chat 😄"
+      "What are you craving?",
+      "What do you want to eat today?"
     ]);
   }
 
-  if ([ 'food', 'hungry', 'eat', 'snack', 'pizza', 'burger' ].some(w => user_input.includes(w))) {
+  if (["music", "song", "listen", "spotify"].some(w => user_input.includes(w))) {
     return rand([
-      "Food talk? Respect. What are you craving? 🍕",
-      "If you’re hungry, I’m hungry for that info too 😂",
-      "Snack check: what’s your go-to?"
+      "What kind of music do you like?",
+      "What song are you listening to right now?"
     ]);
   }
 
-  if ([ 'sleep', 'tired', 'nap', 'wake up' ].some(w => user_input.includes(w))) {
+  // Knowledge: common questions
+  if (["what is computer", "computer what is", "what is a computer"].some(p => user_input.includes(p))) {
     return rand([
-      "Sleep is valid. Do a quick nap, then come back 😌",
-      "Tired? Same. But we ballin’—one message at a time 😂",
-      "Go rest if you can. I’ll still be here when you wake. ✨"
+      "A computer is an electronic device that processes information and runs programs.",
+      "A computer takes input, processes it, stores data, and produces output."
     ]);
   }
 
-  if ([ 'music', 'song', 'spotify', 'listen' ].some(w => user_input.includes(w))) {
+  if (["what is github", "github what is", "github", "what is github.com"].some(p => user_input.includes(p))) {
     return rand([
-      "Music time? Drop the vibe—chill or hype? 🎧",
-      "I don’t pick songs… you do. But I judge your playlist lovingly 😄",
-      "What’s the last song you couldn’t stop listening to?"
+      "GitHub is a website for hosting and collaborating on code using Git.",
+      "GitHub helps developers store repositories, review code, and manage teamwork."
     ]);
+  }
+
+  if (["who is", "who's", "who is the"].some(p => user_input.includes(p))) {
+    if (user_input.includes("greatest footballer") || user_input.includes("best footballer")) {
+      return "Greatest footballer is debated. Common picks include Lionel Messi and Cristiano Ronaldo, based on goals and overall impact.";
+    }
+    if (user_input.includes("greatest musician") || user_input.includes("best musician")) {
+      return "Greatest musician is also subjective. Many people cite artists like Michael Jackson, Prince, or The Beatles depending on genre and impact.";
+    }
+  }
+
+  if (["where is", "what is capital"].some(p => user_input.includes(p))) {
+    return "Tell me the country or place you mean, and I’ll try to answer.";
   }
 
   // Default
-  const starters = [
-    "Got it! ", "Nice! ", "Okay! ", "Cool! ", "Bet! ",
-    "Oof—interesting. ", "Wait—tell me more. ", "Hmm. ",
-    "Alright then. ", "Real quick: ", "So basically: "
-  ];
-
+  const starters = ["Got it! ", "Okay. ", "Sure. ", "Understood. "];
   const endings = [
-    "What do you mean? 😄",
-    "What happened next?",
-    "Do you want advice or just vibes?",
-    "Give me a bit more detail, fam.",
-    "Keep going—I'm listening 👀",
-    "Say more. I’m here.",
-    "Any examples?",
-    "What’s your goal?",
-    "How do you feel about it?",
-    "Do you want a joke too? 😄",
-    "Wanna keep it simple, or go deeper?"
+    "Tell me more.",
+    "What do you want to do next?",
+    "Can you share a bit more detail?",
+    "What’s your goal?"
   ];
 
   return `${rand(starters)}${rand(endings)}`;

@@ -8,7 +8,7 @@ def get_bot_response(user_input: str) -> str:
     # Greetings / slang
     if any(word in user_input for word in [
         'hello', 'hi', 'hey', 'greetings', 'yo', 'sup', 'heyyo', 'hiya', 'howdy',
-        'what up', 'whatup', 'fam', 'bruh', 'dude', 'mate'
+        'what up', 'whatup', 'dude', 'mate'
     ]):
         responses = [
             "Hello. How can I help?",
@@ -39,34 +39,7 @@ def get_bot_response(user_input: str) -> str:
         ]
         return random.choice(responses)
 
-    # Joke / funny
-    elif any(word in user_input for word in [
-        'joke', 'funny', 'lol', 'lmao', 'roast', 'meme', 'cringe', 'lolf',
-        'yeet', 'hehe', 'fun', 'laugh'
-    ]):
-        jokes = [
-            "Why did the computer get cold? …Because it left its Windows open! 😂",
-            "I tried to catch fog yesterday. Mist.akes were made. 😭",
-            "Why don’t skeletons fight each other? They don’t have the guts. 💀",
-            "I’m reading a book on anti-gravity. It’s impossible to put down. 📚✨",
-            "Why did the math book look sad? Because it had too many problems. 😅",
-            "Why did the scarecrow win an award? Because he was outstanding in his field. 🌾",
-            "I would tell you a UDP joke… but you might not get it. 😄",
-            "Bruh I told a joke to my keyboard… now it keeps autocorrecting my punchlines 🤣",
-            "Want a joke? Here’s one: you’re doing awesome. (See? Easy.) 😌",
-            "If laughter was money, you’d be the richest person in the group. 😂",
-            "What do you call fake spaghetti? An impasta. 🍝",
-            "Why did the bicycle fall over? Because it was two-tired. 🚲",
-            "What’s a pirate’s favorite letter? You think it’s the R… but it’s the C. 🏴‍☠️",
-            "Why did the donut go to therapy? Because it was feeling a little *hole-y*. 🍩",
-            "I’m on a seafood diet. I see food and I eat it. 🦐",
-            "My phone said I need a break… so I turned on airplane mode. ✈️",
-            "I tried to write a joke about Wi‑Fi… but I couldn’t find a strong connection. 📶",
-            "What do you call a bear with no teeth? A gummy bear. 🧸",
-            "I told my computer a joke… it didn’t laugh. It just restarted. 😄",
-            "Zero worries. I’m here. And yes—this is your sign to smile. ✨"
-        ]
-        return random.choice(jokes)
+
 
 
     # What can you do / help
@@ -76,7 +49,7 @@ def get_bot_response(user_input: str) -> str:
     ]):
         return random.choice([
             "I can chat, answer simple questions, and help you brainstorm.",
-            "I’m basically your friendly sidekick. Ask me anything.",
+            "I’m your assistant. Ask me anything.",
             "Tell me what you need and I’ll try to help.",
             "I can do quick answers and simple suggestions. What do you want?",
             "I’m here to help. What’s the mission?"
@@ -89,7 +62,8 @@ def get_bot_response(user_input: str) -> str:
         return random.choice([
             "I’m your AI assistant—here to chat and help.",
             "I’m the friendly chatbot living in your browser. No big drama, just vibes.",
-            "I’m here to answer questions, tell jokes, and keep the convo moving.",
+            "I’m here to answer questions and keep the convo moving.",
+
             "I’m a simple demo bot. You’ll get responses.",
             "I’m like a helpful friend."
         ])
@@ -134,19 +108,7 @@ def get_bot_response(user_input: str) -> str:
             "I’m ready. What is the problem?"
         ])
 
-    # Slang triggers (friendly)
-    elif any(word in user_input for word in [
-        'bruh', 'fam', 'fr', 'ong', 'ngl', 'frfr', 'idk', 'w', 'l', 'yeet', 'rip', 'no cap', 'cap'
-    ]):
-        return random.choice([
-            "Tell me more.",
-            "That sounds interesting.",
-            "What is the next step?",
-            "I’m listening.",
-            "How can I help?",
-            "What do you want to ask?",
-            "Let’s continue."
-        ])
+
 
     # Small talk (easy/common words)
     elif any(word in user_input for word in ['weather', 'rain', 'sun', 'hot', 'cold']):
