@@ -2,17 +2,7 @@
   "changelists": [
     {
       "name": "Default",
-      "files": [
-        "server.js",
-        ".vscode/changelists.json",
-        "package.json",
-        "script.js",
-        "package-lock.json",
-        "public/index.html",
-        "public/styles.css",
-        "public/script.js",
-        ".gitignore"
-      ]
+      "files": []
     }
   ],
   "active": "Default"
