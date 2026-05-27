@@ -1,6 +1,8 @@
 function rand(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
 
 function getBotResponse(input) {
+  // Legacy fallback (in case API is unavailable)
+
   const user_input = (input || "").toLowerCase().trim();
 
   // Helpers to keep responses more consistent and formal
@@ -302,11 +304,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
     setLoading(true);
 
-    setTimeout(() => {
-      const reply = getBotResponse(text);
-      appendMessage(`Bot: ${reply}`, 'bot');
-      setLoading(false);
-    }, 450);
+    setTimeout(async () => {
+      try {
+        // Call backend LLM API (Gemini) securely. API key must stay on server.
+        const resp = await fetch('/api/chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ message: text })
+        });
+
+        const data = await resp.json();
+        const reply = data?.reply || data?.error || 'No response was generated.';
+        appendMessage(`Bot: ${reply}`, 'bot');
+      } catch (e) {
+        appendMessage(`Bot: Server error. Please try again.`, 'bot');
+      } finally {
+        setLoading(false);
+      }
+    }, 350);
+
   });
 
 });

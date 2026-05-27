@@ -3,8 +3,15 @@
     {
       "name": "Default",
       "files": [
+        "server.js",
+        ".vscode/changelists.json",
+        "package.json",
         "script.js",
-        ".vscode/changelists.json"
+        "package-lock.json",
+        "public/index.html",
+        "public/styles.css",
+        "public/script.js",
+        ".gitignore"
       ]
     }
   ],
