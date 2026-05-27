@@ -20,8 +20,8 @@ app.get('/health', (req, res) => {
 });
 
 app.get('/', (req, res) => {
-  // Serve redesigned frontend (new UI lives under public/chat_v2)
-  res.sendFile(new URL('./public/chat_v2/index.html', import.meta.url).pathname);
+  // Single HTML entrypoint
+  res.sendFile(new URL('./public/index.html', import.meta.url).pathname);
 });
 
 
