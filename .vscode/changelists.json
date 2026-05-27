@@ -3,10 +3,9 @@
     {
       "name": "Default",
       "files": [
-        "server.js",
+        "public/script.js",
         ".vscode/changelists.json",
-        "index.html",
-        "README.md"
+        "server.js"
       ]
     }
   ],

@@ -25,22 +25,28 @@ app.get('/', (req, res) => {
 
 
 app.post('/api/chat', async (req, res) => {
+  const startedAt = Date.now();
+
   try {
     const { message } = req.body || {};
+
     if (!message || typeof message !== 'string') {
       return res.status(400).json({ error: 'message is required' });
     }
 
     const apiKey = process.env.GEMINI_API_KEY;
+    const hasApiKey = !!apiKey;
+
     if (!apiKey) {
+      console.error('[api/chat] Missing GEMINI_API_KEY');
       return res.status(500).json({ error: 'GEMINI_API_KEY is not configured' });
     }
 
     // Gemini REST call (API key stays on the server)
-// Note: model id must match what your Google AI project supports.
-// Defaulting to gemini-1.5-flash; change if your account doesn't allow it.
-const MODEL_ID = process.env.GEMINI_MODEL_ID || 'gemini-1.5-flash';
-const url = `https://generativelanguage.googleapis.com/v1/models/${MODEL_ID}:generateContent?key=${apiKey}`;
+    // Note: model id must match what your Google AI project supports.
+    // Defaulting to gemini-1.5-flash; change if your account doesn't allow it.
+    const MODEL_ID = process.env.GEMINI_MODEL_ID || 'gemini-1.5-flash';
+    const url = `https://generativelanguage.googleapis.com/v1/models/${MODEL_ID}:generateContent?key=${apiKey}`;
 
     const body = {
       contents: [
@@ -56,23 +62,48 @@ const url = `https://generativelanguage.googleapis.com/v1/models/${MODEL_ID}:gen
       }
     };
 
+    console.log('[api/chat] request', {
+      hasApiKey,
+      modelId: MODEL_ID,
+      messageLength: message.length
+    });
+
     const r = await fetch(url, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(body)
     });
 
-    const data = await r.json();
+    const data = await r.json().catch(() => ({}));
 
     if (!r.ok) {
-      return res.status(502).json({ error: 'Gemini API request failed', details: data });
+      console.error('[api/chat] Gemini request failed', {
+        status: r.status,
+        statusText: r.statusText,
+        details: data
+      });
+
+      return res.status(502).json({
+        error: 'Gemini API request failed',
+        details: data,
+        status: r.status
+      });
     }
 
     const text =
       data?.candidates?.[0]?.content?.parts?.map(p => p.text).filter(Boolean).join('') || '';
 
+    const elapsedMs = Date.now() - startedAt;
+
+    console.log('[api/chat] success', {
+      elapsedMs,
+      hasReplyText: !!text,
+      replyLength: text.length
+    });
+
     return res.json({ reply: text || 'No response was generated.' });
   } catch (err) {
+    console.error('[api/chat] Server error', err);
     return res.status(500).json({ error: 'Server error', details: String(err) });
   }
 });
