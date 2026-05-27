@@ -45,7 +45,7 @@ app.post('/api/chat', async (req, res) => {
     // Gemini REST call (API key stays on the server)
     // Note: model id must match what your Google AI project supports.
     // Defaulting to gemini-1.5-flash; change if your account doesn't allow it.
-    const MODEL_ID = process.env.GEMINI_MODEL_ID || 'gemini-1.5-flash';
+    const MODEL_ID = process.env.GEMINI_MODEL_ID || 'gemini-1.5-pro-latest';
     const url = `https://generativelanguage.googleapis.com/v1/models/${MODEL_ID}:generateContent?key=${apiKey}`;
 
     const body = {
