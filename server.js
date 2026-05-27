@@ -3,14 +3,16 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
+// helpful debug (disable/remove after confirming setup)
+// console.log('GEMINI_API_KEY configured:', !!process.env.GEMINI_API_KEY);
+
 const app = express();
+
 app.use(express.json());
 
 app.use(express.static('public'));
 
-app.use('/script.js', (req, res, next) => {
-  res.sendFile(new URL('./public/script.js', import.meta.url).pathname);
-});
+
 
 
 app.get('/health', (req, res) => {
@@ -35,7 +37,10 @@ app.post('/api/chat', async (req, res) => {
     }
 
     // Gemini REST call (API key stays on the server)
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
+// Note: model id must match what your Google AI project supports.
+// Defaulting to gemini-1.5-flash; change if your account doesn't allow it.
+const MODEL_ID = process.env.GEMINI_MODEL_ID || 'gemini-1.5-flash';
+const url = `https://generativelanguage.googleapis.com/v1/models/${MODEL_ID}:generateContent?key=${apiKey}`;
 
     const body = {
       contents: [
