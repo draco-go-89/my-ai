@@ -3,7 +3,12 @@
     {
       "name": "Default",
       "files": [
-        "server.js"
+        "TODO.md",
+        ".vscode/changelists.json",
+        "TODO_UI_REDESIGN.md",
+        "server.js",
+        "public/script.js",
+        "public/styles.css"
       ]
     }
   ],

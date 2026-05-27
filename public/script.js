@@ -269,6 +269,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const nameInput = document.getElementById('nameInput');
   const controls = document.getElementById('controls');
 
+  // New UI (chat_v2) may have a different status node
+  const statusLine = document.getElementById('statusLine');
+
   function appendMessage(text, who) {
     const el = document.createElement('div');
     el.className = 'msg ' + (who === 'user' ? 'user' : 'bot');
@@ -287,13 +290,27 @@ document.addEventListener('DOMContentLoaded', () => {
     sendBtn.dataset.loading = String(isLoading);
     if (isLoading) {
       sendBtn.textContent = 'Sending…';
+      if (statusLine) statusLine.textContent = 'Thinking…';
     } else {
       sendBtn.textContent = 'Send';
+      if (statusLine) statusLine.textContent = 'Ready';
     }
+  }
+
+  // Composer: textarea supports Shift+Enter for newline, Enter to send
+  // Only apply if this is actually a textarea
+  if (textInput && textInput.tagName && textInput.tagName.toLowerCase() === 'textarea') {
+    textInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        controls.requestSubmit();
+      }
+    });
   }
 
   controls.addEventListener('submit', (e) => {
     e.preventDefault();
+
     const name = nameInput.value.trim() || 'Friend';
     const text = textInput.value.trim();
     if (!text) return;
@@ -305,7 +322,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     setTimeout(async () => {
       try {
-        // Call backend LLM API (Gemini) securely. API key must stay on server.
         const resp = await fetch('/api/chat', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -315,16 +331,15 @@ document.addEventListener('DOMContentLoaded', () => {
         const data = await resp.json();
         const reply = data?.reply || data?.error || 'No response was generated.';
         appendMessage(`Bot: ${reply}`, 'bot');
-      } catch (e) {
+      } catch (err) {
         appendMessage(`Bot: Server error. Please try again.`, 'bot');
       } finally {
         setLoading(false);
       }
-    }, 350);
-
+    }, 200);
   });
-
 });
+
 
 
 

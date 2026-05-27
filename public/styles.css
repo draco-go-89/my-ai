@@ -56,6 +56,9 @@ main{
   main{ padding-top: 10px; padding-bottom: 18px; min-height: auto; }
 }
 
+/* Legacy stylesheet (kept for backward compatibility with old root index.html)
+   New UI lives in /public/chat_v2 and uses /public/chat_v2/styles.css */
+
 header .h3{ letter-spacing: -0.02em; font-weight: 780; }
 
 .chat-card{

@@ -1,14 +1,12 @@
-# TODO - UI/UX Refresh
+# TODO
 
-- [x] Update `styles.css` with a more colorful theme, improved sizing/typography, and responsive flex-based chat layout.
+## UI/UX redesign + bug fixes checklist
 
-- [x] Add interactive states (focus glow, button hover/active) and message bubble micro-animations.
-
-- [x] Add message bubble “tail” styling for user/bot.
-
-- [x] Update `script.js` to support a loading UX: disable send button + show loading text while bot replies.
-
-
-- [x] Sanity check: load page, verify responsiveness and interactive behavior.
-
+- [x] Sync frontend script used by server (`public/script.js`)
+- [x] Add detailed server logging for `/api/chat`
+- [x] Fix Gemini model id 404 by using `gemini-1.5-pro-latest` fallback
+- [ ] Rebuild frontend UI (sidebar + redesigned composer)
+- [ ] Implement multi-line textarea composer (option 2)
+- [ ] Update `public/script.js` to match new DOM selectors
+- [ ] Verify `/api/chat` flow after redesign (reply + loading state)
 
