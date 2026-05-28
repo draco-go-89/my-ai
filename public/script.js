@@ -3,6 +3,10 @@ function rand(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
 function getBotResponse(input) {
   const user_input = (input || "").toLowerCase().trim();
 
+  // If the user just sent something empty/whitespace
+  if (!user_input) return "Understood. Please type a message, and I will respond.";
+
+
   const formalStarters = [
     "Thank you for your message.",
     "I appreciate your question.",
@@ -202,7 +206,59 @@ function getBotResponse(input) {
     ]);
   }
 
+  // Extra common conversational datasets (LLM-like but local/static)
+  const extraPatterns = [
+    {
+      k: ["help me", "i need", "i require", "can you"],
+      r: [
+        "I can help. Tell me what you’re trying to achieve and what’s getting in the way.",
+        "Understood. What outcome do you want, and what constraints should I consider?",
+        "Please share the details (goal, context, constraints). Then I’ll propose a clear next step."
+      ]
+    },
+    {
+      k: ["thank you", "thanks a lot", "tysm", "appreciate"],
+      r: [
+        "You’re welcome. I’m glad I could help.",
+        "My pleasure—tell me what you’d like to do next."
+      ]
+    },
+    {
+      k: ["sorry", "my bad", "apologies"],
+      r: [
+        "No worries. Let’s continue—what would you like help with?",
+        "It’s okay. Please restate what you want and I’ll respond."
+      ]
+    },
+    {
+      k: ["bye", "goodbye", "see you"],
+      r: [
+        "Goodbye. Thanks for chatting.",
+        "Take care—if you return with another question, I’ll be here."
+      ]
+    },
+    {
+      k: ["how are you doing", "how are you", "you doing"],
+      r: [
+        "I’m ready to help. What’s on your mind today?",
+        "Doing well. Tell me what you want to work on."
+      ]
+    },
+    {
+      k: ["what should i do", "recommend", "suggest me"],
+      r: [
+        "Tell me your goal and any constraints (time, budget, preferences). Then I’ll suggest a practical plan.",
+        "Share a bit of context and I’ll propose options with clear next steps."
+      ]
+    }
+  ];
+
+  for (const p of extraPatterns) {
+    if (p.k.some(x => user_input.includes(x))) return pick(p.r);
+  }
+
   const userIntents = [
+
     {
       k: ["explain", "explanation", "tell me about"],
       r: [
@@ -356,6 +412,7 @@ document.addEventListener('DOMContentLoaded', () => {
     autoGrow();
 
     setLoading(true);
+
 
     try {
       const resp = await fetch('/api/chat', {
