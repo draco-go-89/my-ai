@@ -100,8 +100,8 @@ document.addEventListener('DOMContentLoaded', () => {
   controls.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    const name = nameInput?.value?.trim() || 'Friend';
-    const text = textInput?.value?.trim() || '';
+    const name = nameInput?.value?.trim() || ''; //add here name for like "User" or "You" if name is empty
+    const text = textInput?.value?.trim() || ''; //add here bot or luboo as it is name for bot
     if (!text) return;
 
     appendMessage(`${name}: ${text}`, 'user');
