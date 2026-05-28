@@ -20,8 +20,7 @@
   --shadow: 0 18px 60px rgba(0,0,0,0.35);
 
   --radius-lg: 18px;
-  --radius-md: 14px;
-  --radius-sm: 10px;
+  --radius-md: 14px;  --radius-sm: 10px;
 }
 
 *{ box-sizing:border-box; }
@@ -56,8 +55,6 @@ main{
   main{ padding-top: 10px; padding-bottom: 18px; min-height: auto; }
 }
 
-
-
 header .h3{ letter-spacing: -0.02em; font-weight: 780; }
 
 .chat-card{
@@ -81,14 +78,7 @@ header .h3{ letter-spacing: -0.02em; font-weight: 780; }
 
 .chat-card > *{ position: relative; }
 
-/* Layout: make messages flex and responsive (no hard fixed height) */
 #controls{ margin-top: 0.9rem !important; }
-
-.chat-inner{
-  display:flex;
-  flex-direction: column;
-  gap: 0.85rem;
-}
 
 .messages{
   flex: 1;
@@ -137,7 +127,6 @@ header .h3{ letter-spacing: -0.02em; font-weight: 780; }
   to{ transform: translateY(0); opacity:1; }
 }
 
-/* User bubble */
 .msg.user .bubble{
   color: #fff;
   background: linear-gradient(135deg, rgba(124,58,237,1) 0%, rgba(34,197,94,1) 100%);
@@ -156,7 +145,6 @@ header .h3{ letter-spacing: -0.02em; font-weight: 780; }
   clip-path: polygon(0 0, 100% 0, 0 100%);
 }
 
-/* Bot bubble */
 .msg.bot{ justify-content:flex-start; }
 
 .msg.bot .bubble{
@@ -177,15 +165,40 @@ header .h3{ letter-spacing: -0.02em; font-weight: 780; }
   clip-path: polygon(100% 0, 0 0, 100% 100%);
 }
 
+/* Composer */
+.composer{ width: 100%; }
+.composer-top{ gap: 12px; }
+.send-wrap{ width: 100%; }
+.composer-footer{ margin-top: 8px; }
+
+.hint{
+  font-size: 0.85rem;
+  color: rgba(234,240,255,0.65);
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+#clearBtn{
+  border-radius: 12px;
+  padding: 6px 10px;
+}
+
 /* Controls */
 .controls .form-control{
   background: rgba(255,255,255,0.08);
   color: var(--text);
   border: 1px solid rgba(255,255,255,0.16);
   border-radius: 12px;
-  height: 46px;
-  padding: 0 14px;
   transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+}
+
+.controls input.form-control{ height: 46px; padding: 0 14px; }
+
+.controls textarea.form-control{
+  resize: none;
+  min-height: 74px;
+  padding: 12px 14px;
+  line-height: 1.35;
 }
 
 .controls .form-control::placeholder{ color: rgba(234,240,255,0.55); }
@@ -214,9 +227,7 @@ header .h3{ letter-spacing: -0.02em; font-weight: 780; }
   box-shadow: 0 18px 40px rgba(0,210,255,0.18);
 }
 
-.controls .btn:active{
-  transform: translateY(0);
-}
+.controls .btn:active{ transform: translateY(0); }
 
 .controls .btn:disabled{
   opacity: 0.62;
@@ -232,7 +243,6 @@ header .h3{ letter-spacing: -0.02em; font-weight: 780; }
 
 .footer-link:hover{ text-decoration: underline; color: #fff; }
 
-/* Responsive sizing */
 @media (max-width: 768px){
   .messages{ max-height: 420px; min-height: 240px; }
   .bubble{ font-size: 0.95rem; max-width: 86%; }
@@ -241,7 +251,8 @@ header .h3{ letter-spacing: -0.02em; font-weight: 780; }
 @media (max-width: 520px){
   main{ padding-left: 14px; padding-right: 14px; }
   .messages{ max-height: 360px; min-height: 220px; padding: 12px; }
-  .controls .form-control{ height: 44px; }
+  .controls input.form-control{ height: 44px; }
   .controls .btn{ height: 44px; }
+  .controls textarea.form-control{ min-height: 64px; }
 }
 

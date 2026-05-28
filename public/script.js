@@ -1,11 +1,8 @@
 function rand(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
 
 function getBotResponse(input) {
-  // Legacy fallback (in case API is unavailable)
-
   const user_input = (input || "").toLowerCase().trim();
 
-  // Helpers to keep responses more consistent and formal
   const formalStarters = [
     "Thank you for your message.",
     "I appreciate your question.",
@@ -31,11 +28,8 @@ function getBotResponse(input) {
     "Let me know what outcome you prefer."
   ];
 
-  function pick(list) {
-    return rand(list);
-  }
+  function pick(list) { return rand(list); }
 
-  // Large word/phrase banks (to broaden matching + variety)
   const greetings = [
     "hello", "hi", "hey", "greetings", "howdy", "good morning", "good afternoon", "good evening",
     "hiya", "welcome", "nice to meet you", "how are you", "how do you do"
@@ -60,20 +54,15 @@ function getBotResponse(input) {
     "who are you", "what are you", "your name", "about you", "bot", "who r u", "what is this"
   ];
 
-  const thanksAsks = [
-    "thank", "thanks", "thx", "appreciate", "ty", "tysm", "grateful", "much"
-  ];
+  const thanksAsks = ["thank", "thanks", "thx", "appreciate", "ty", "tysm", "grateful", "much"];
 
-  const goodbyeAsks = [
-    "bye", "goodbye", "see you", "later", "cya", "ttyl", "exit", "quit", "farewell"
-  ];
+  const goodbyeAsks = ["bye", "goodbye", "see you", "later", "cya", "ttyl", "exit", "quit", "farewell"];
 
   const weatherTopics = ["weather", "rain", "sun", "sunny", "hot", "cold", "temperature", "storm"];
   const foodTopics = ["food", "hungry", "eat", "snack", "pizza", "burger", "lunch", "dinner", "breakfast"];
   const musicTopics = ["music", "song", "listen", "spotify", "playlist", "audio", "song recommendation"];
   const sleepTopics = ["sleep", "tired", "nap", "wake up", "fatigue", "insomnia"];
 
-  // Greetings
   if (greetings.some(w => user_input.includes(w))) {
     return pick([
       "Hello. I am here to assist you. How can I help you today?",
@@ -84,7 +73,6 @@ function getBotResponse(input) {
     ]);
   }
 
-  // How are you
   if (howAreYouPhrases.some(p => user_input.includes(p))) {
     return pick([
       "I am functioning well and ready to assist you. How can I help?",
@@ -95,7 +83,6 @@ function getBotResponse(input) {
     ]);
   }
 
-  // What can you do / capabilities
   if (capabilitiesAsks.some(p => user_input.includes(p))) {
     return pick([
       "I can help with clarifying questions, drafting explanations, brainstorming ideas, and providing general guidance in a formal style.",
@@ -106,7 +93,6 @@ function getBotResponse(input) {
     ]);
   }
 
-  // About the bot
   if (aboutBotAsks.some(w => user_input.includes(w))) {
     return pick([
       "I am a simple AI-style chatbot created for this web demo. I respond using a set of prewritten templates and heuristics.",
@@ -117,7 +103,6 @@ function getBotResponse(input) {
     ]);
   }
 
-  // Thanks
   if (thanksAsks.some(w => user_input.includes(w))) {
     return pick([
       "You are welcome. I am glad I could be helpful.",
@@ -128,7 +113,6 @@ function getBotResponse(input) {
     ]);
   }
 
-  // Goodbye
   if (goodbyeAsks.some(w => user_input.includes(w))) {
     return pick([
       "Goodbye. Thank you for your time, and please take care.",
@@ -139,7 +123,6 @@ function getBotResponse(input) {
     ]);
   }
 
-  // Help request
   if (helpAsks.some(w => user_input.includes(w))) {
     return pick([
       "I can help. Please describe the problem in one or two sentences, including what you have tried so far.",
@@ -150,7 +133,6 @@ function getBotResponse(input) {
     ]);
   }
 
-  // Small talk topics (neutral but formal)
   if (weatherTopics.some(w => user_input.includes(w))) {
     return pick([
       "Regarding the weather: it can change quickly. If you tell me your location or conditions, I can suggest a sensible plan for the day.",
@@ -183,7 +165,6 @@ function getBotResponse(input) {
     ]);
   }
 
-  // Knowledge: common questions (expanded)
   if (["what is computer", "computer what is", "what is a computer", "definition of computer"].some(p => user_input.includes(p))) {
     return pick([
       "A computer is an electronic device that accepts input, processes data according to instructions, and produces output. In modern usage, it typically includes hardware components and software programs.",
@@ -209,7 +190,7 @@ function getBotResponse(input) {
     }
     return pick([
       "I can answer, but the result depends on which person or field you mean. Could you specify the name, category, or context?",
-      "If you clarify the subject (e.g., sports, science, history, entertainment), I will respond with a more accurate explanation." 
+      "If you clarify the subject (e.g., sports, science, history, entertainment), I will respond with a more accurate explanation."
     ]);
   }
 
@@ -217,31 +198,54 @@ function getBotResponse(input) {
     return pick([
       "Please specify the country or region you mean, and I will respond with the correct capital.",
       "To answer precisely, tell me which country or area you are asking about.",
-      "If you provide the specific place, I can provide the capital and, if useful, a brief context about it." 
+      "If you provide the specific place, I can provide the capital and, if useful, a brief context about it."
     ]);
   }
 
-  // Extended “formal conversation” fallbacks: more templates and longer responses
   const userIntents = [
-    { k: ["explain", "explanation", "tell me about"], r: [
-      "I can explain that in a structured manner. What level of detail do you want—simple overview or a comprehensive explanation?",
-      "Please confirm the topic and your current understanding. Then I will provide a clear explanation with key points.",
-      "Tell me the specific concept you want explained, and I will respond with definitions and relevant examples." ] },
-    { k: ["summarize", "summary", "short"], r: [
-      "I can provide a concise summary. What text, topic, or scenario should I summarize?",
-      "Please share the material you want summarized, and I will condense it into clear, formal points." ] },
-    { k: ["draft", "write", "compose"], r: [
-      "I can draft a formal message or document. Please provide the purpose, audience, and tone you want (e.g., professional, academic, courteous).",
-      "Tell me what you need to write and the context. I will create a structured draft that you can refine." ] },
-    { k: ["ideas", "brainstorm", "suggest"], r: [
-      "I can brainstorm ideas. What is the goal, and are there any constraints such as budget, timeline, or required features?",
-      "Please tell me what you are planning, and I will propose multiple formal options for you to consider." ] },
-    { k: ["plan", "steps", "roadmap"], r: [
-      "A step-by-step plan is feasible. What is your deadline, and what resources do you have available?",
-      "Share your objective and constraints, and I will produce an actionable roadmap with clear milestones." ] },
-    { k: ["question", "what"], r: [
-      "Please restate your question clearly. If you add context, I can provide a more accurate and useful response.",
-      "I am ready to answer. Could you specify the exact question you want addressed?" ] }
+    {
+      k: ["explain", "explanation", "tell me about"],
+      r: [
+        "I can explain that in a structured manner. What level of detail do you want—simple overview or a comprehensive explanation?",
+        "Please confirm the topic and your current understanding. Then I will provide a clear explanation with key points.",
+        "Tell me the specific concept you want explained, and I will respond with definitions and relevant examples."
+      ]
+    },
+    {
+      k: ["summarize", "summary", "short"],
+      r: [
+        "I can provide a concise summary. What text, topic, or scenario should I summarize?",
+        "Please share the material you want summarized, and I will condense it into clear, formal points."
+      ]
+    },
+    {
+      k: ["draft", "write", "compose"],
+      r: [
+        "I can draft a formal message or document. Please provide the purpose, audience, and tone you want (e.g., professional, academic, courteous).",
+        "Tell me what you need to write and the context. I will create a structured draft that you can refine."
+      ]
+    },
+    {
+      k: ["ideas", "brainstorm", "suggest"],
+      r: [
+        "I can brainstorm ideas. What is the goal, and are there any constraints such as budget, timeline, or required features?",
+        "Please tell me what you are planning, and I will propose multiple formal options for you to consider."
+      ]
+    },
+    {
+      k: ["plan", "steps", "roadmap"],
+      r: [
+        "A step-by-step plan is feasible. What is your deadline, and what resources do you have available?",
+        "Share your objective and constraints, and I will produce an actionable roadmap with clear milestones."
+      ]
+    },
+    {
+      k: ["question", "what"],
+      r: [
+        "Please restate your question clearly. If you add context, I can provide a more accurate and useful response.",
+        "I am ready to answer. Could you specify the exact question you want addressed?"
+      ]
+    }
   ];
 
   for (const intent of userIntents) {
@@ -250,7 +254,6 @@ function getBotResponse(input) {
     }
   }
 
-  // Default fallback (more variety + formal)
   const fallback = [
     "I have understood your request. To respond effectively, could you clarify the specific outcome you want?",
     "Thank you. I can assist, but I need a bit more detail to ensure the response is relevant and accurate.",
@@ -269,6 +272,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const nameInput = document.getElementById('nameInput');
   const controls = document.getElementById('controls');
 
+  const statusLine = document.getElementById('statusLine');
+  const clearBtn = document.getElementById('clearBtn');
+  const charHint = document.getElementById('charHint');
+
+  const MAX_CHARS = 2000;
 
   function appendMessage(text, who) {
     const el = document.createElement('div');
@@ -288,42 +296,87 @@ document.addEventListener('DOMContentLoaded', () => {
     sendBtn.dataset.loading = String(isLoading);
     if (isLoading) {
       sendBtn.textContent = 'Sending…';
+      if (statusLine) statusLine.textContent = 'Thinking…';
     } else {
       sendBtn.textContent = 'Send';
+      if (statusLine) statusLine.textContent = 'Ready';
     }
   }
 
-  controls.addEventListener('submit', (e) => {
+  function clampAndUpdateHint() {
+    if (!textInput) return;
+    if (textInput.value.length > MAX_CHARS) {
+      textInput.value = textInput.value.slice(0, MAX_CHARS);
+    }
+    if (charHint) charHint.textContent = `${textInput.value.length} / ${MAX_CHARS}`;
+  }
+
+  function autoGrow() {
+    if (!textInput || textInput.tagName.toLowerCase() !== 'textarea') return;
+    textInput.style.height = 'auto';
+    textInput.style.height = `${textInput.scrollHeight}px`;
+  }
+
+  if (textInput && textInput.tagName && textInput.tagName.toLowerCase() === 'textarea') {
+    textInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        controls.requestSubmit();
+      }
+    });
+
+    textInput.addEventListener('input', () => {
+      clampAndUpdateHint();
+      autoGrow();
+    });
+
+    clampAndUpdateHint();
+    autoGrow();
+  }
+
+  if (clearBtn) {
+    clearBtn.addEventListener('click', () => {
+      if (textInput) textInput.value = '';
+      clampAndUpdateHint();
+      autoGrow();
+      textInput?.focus?.();
+    });
+  }
+
+  controls.addEventListener('submit', async (e) => {
     e.preventDefault();
+
     const name = nameInput.value.trim() || 'Friend';
     const text = textInput.value.trim();
     if (!text) return;
 
     appendMessage(`${name}: ${text}`, 'user');
     textInput.value = '';
+    clampAndUpdateHint();
+    autoGrow();
 
     setLoading(true);
 
-    setTimeout(async () => {
-      try {
-        // Call backend LLM API (Gemini) securely. API key must stay on server.
-        const resp = await fetch('/api/chat', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ message: text })
-        });
+    try {
+      const resp = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: text })
+      });
 
-        const data = await resp.json();
-        const reply = data?.reply || data?.error || 'No response was generated.';
+      const data = await resp.json().catch(() => ({}));
+      const reply = data?.reply || data?.error || '';
+
+      if (reply) {
         appendMessage(`Bot: ${reply}`, 'bot');
-      } catch (e) {
-        appendMessage(`Bot: Server error. Please try again.`, 'bot');
-      } finally {
-        setLoading(false);
+      } else {
+        appendMessage(`Bot: ${getBotResponse(text)}`, 'bot');
       }
-    }, 350);
-
+    } catch (err) {
+      appendMessage(`Bot: Server error. ${getBotResponse(text)}`, 'bot');
+    } finally {
+      setLoading(false);
+    }
   });
-
 });
 
