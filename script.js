@@ -3,9 +3,11 @@ function getBotResponse(input) {
 
   const boyTerms = ['boy', 'man', 'men', 'male', 'guy'];
   const girlTerms = ['girl', 'woman', 'women', 'female', 'lady'];
+  const greetings = ['hi', 'hello', 'hey', 'hii', 'heloo', 'yo'];
 
   const mentionsBoy = boyTerms.some(t => user_input.includes(t));
   const mentionsGirl = girlTerms.some(t => user_input.includes(t));
+  const isGreeting = greetings.some(g => user_input.includes(g));
 
   // Keep exactly these behaviors:
   // - If user says boy-related word -> You are gay
@@ -13,6 +15,7 @@ function getBotResponse(input) {
   // - Otherwise -> ask: are you boy or a girl ?
   if (mentionsBoy && !mentionsGirl) return 'You are gay!';
   if (mentionsGirl && !mentionsBoy) return 'Love you😘';
+  if (isGreeting) return 'What\'s up?';
 
   return 'Are you a boy or a girl ?';
 }
