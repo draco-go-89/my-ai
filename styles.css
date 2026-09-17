@@ -247,7 +247,9 @@ header .h3{ letter-spacing: -0.02em; font-weight: 780; }
 }
 
 .footer-link{
-  text-decoration:none;
+  text-decoration: solid;
+  background-color: transparent;
+  background: fixed;
   color: var(--muted);
 }
 
