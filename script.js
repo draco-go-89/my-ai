@@ -3,7 +3,7 @@ function getBotResponse(input) {
 
   const boyTerms = ['boy', 'man', 'men', 'male', 'guy'];
   const girlTerms = ['girl', 'woman', 'women', 'female', 'lady'];
-  const greetings = ['hi', 'hello', 'hey', 'hii', 'heloo', 'yo'];
+  const greetings = ['hi', 'hello', 'hey', 'hii', 'heloo'];
 
   const mentionsBoy = boyTerms.some(t => user_input.includes(t));
   const mentionsGirl = girlTerms.some(t => user_input.includes(t));
